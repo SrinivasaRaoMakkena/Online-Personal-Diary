@@ -13,15 +13,20 @@ and open the template in the editor.
           
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="Notes.js"></script>
     </head>
     <style>
         body{
-        height: 120%;
- 	background-repeat: repeat;
-        background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+        height: 100%;
  	
+       
+ 	background:linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33))  no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
  	font-family: 'Oxygen', sans-serif;
-	    background-size: cover;
+	    
         }
         #today{
             color:white;
@@ -37,25 +42,57 @@ and open the template in the editor.
         /*text area*/
         
         #thoughts{
-            color:red;
+            color:white;
             font-size: 30px;
             text-align: center;
             padding-top: 10px;
         }
         
         .placeToWrite{
-            padding: 30px;
-            margin: 20px;
+            padding: 20px;
+            margin-top: 20px;
+            margin-bottom: 15px;
+             margin-right: 20px;
+             margin-left: 0px;
+            width: 450px;
+        }
+        .title{
+            padding: 10px;
+            
+            margin-top: 8px;
+    margin-bottom: 0px;
+    margin-right: 20px;
+    margin-left: 20px;
+            width: 450px;
+        }
+        .date{
+            padding-left: 30px;
+            padding-top: 0px;
+            padding: 7px;
+         
+            width: 450px;
         }
         #submit{
             width: 50%;
             color:white;
-            background-color: black;
+            margin-bottom: 20px;
+            background-color: lightslategray;
+           
+        }
+        #submit:hover{
+            background-color:  green;
         }
         h1{
             color:#66ff33;
         }
         
+        #userHome{
+            width: 100%;
+            height:100%;
+            background-image:  url("images/diaryy.png")
+               
+            
+        }
         
     </style>
     <body>
@@ -73,25 +110,25 @@ and open the template in the editor.
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">MyDiary <span class="caret"></span></a>
+        <li >
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">MyDiary </a>
         <!--  <ul class="dropdown-menu">
             <li><a href="#">MyDiary</a></li>
            
           </ul>-->
         </li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">AboutUs</a></li>
+        <li><a href="contactUs.html">Contact</a></li>
+        <li><a href="aboutUs.html">AboutUs</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="Registration.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li id="login"><a href="SignIn.html" ><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="Main.html"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+        
       </ul>
     </div>
   </div>
 </nav>
     <marquee><h1>Welcome to Personal Online Diary...!!!</h1></marquee>
-       <p id="today"></p>
+       
 
 <script>
 var d = new Date();
@@ -99,17 +136,42 @@ document.getElementById("today").innerHTML = d.toDateString();
 </script>
         <br>    
         <div class="text" >
-            <p id ="thoughts">Write your Today's thoughts</p>
+            <p id ="thoughts">Write your thoughts here!</p>
             <center>
-            <form action="myDiary.html" id="usrform">
-                <textarea class="placeToWrite" name="comment" form="usrform" rows="10" cols="50" placeholder="Enter text here" ></textarea>
-                  <br>
-                  <input type="submit" id="submit"></input>
-            </form>
+                
+                
+                
+            <div class="main" id="userHome" >
+                <form  name="usrform" method="post" action="UserServlet">
+                    <br>
+                    
+                    <div style="display: inline-block " ><h2>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Title:</h2></div><div style="display: inline-block"><input type="text" name="title" class="title" id="noteArea" placeholder="Title of thought" rows="10" cols="50"/></div><br>
+                    <div style="display: inline-block " ><h2>  &nbsp;&nbsp;&nbsp;Date:&nbsp;&nbsp;</h2></div><div style="display: inline-block"><input type="date" name="date" class="date" id="date" placeholder="date"/></div><br/>
+                    <div style="display: inline-block " ><h2>  &nbsp;&nbsp;Thought:&nbsp;</h2></div><div style="display: inline-block"><input type=text class="placeToWrite" id="noteArea" name="thought" rows="10" cols="50" placeholder="Enter text here"  required="" oninvalid="this.setCustomValidity('Please enter your Email Here')" oninput="setCustomValidity('')"></input></div>
+                      <br>
+                      &nbsp;&nbsp;&nbsp;<input type="submit" id="submit" value="Save"></input>
+                </form>
+            </div>
+                
+                
             
            
+         
+                
+                
             </center>
         </div>
-        
+        <style>
+    footer {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+    margin-top: 120px;
+}
+</style>
+    
+<footer style="">Copyright &copy; personalonlinediary.com</footer>
     </body>
 </html>
