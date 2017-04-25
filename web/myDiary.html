@@ -1,42 +1,223 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>My Past Thought's</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Diary</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style type="text/css">
+    .bs-example{
+    	margin: 50px;
+    }
+</style>
+<STYLE TYPE="text/css">
+TD, TH {text-align:center}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+/*******************
+  UTILITY FUNCTIONS
+********************/
+// day of week of month's first day
+function getFirstDay(theYear, theMonth){
+    var firstDate = new Date(theYear,theMonth,1)
+    return firstDate.getDay()
+}
+// number of days in the month
+function getMonthLen(theYear, theMonth) {
+    var oneDay = 1000 * 60 * 60 * 24
+    var thisMonth = new Date(theYear, theMonth, 1)
+    var nextMonth = new Date(theYear, theMonth + 1, 1)
+    var len = Math.ceil((nextMonth.getTime() - 
+        thisMonth.getTime())/oneDay)
+    return len
+}
+// create array of English month names
+var theMonths = ["January","February","March","April","May","June","July","August",
+"September","October","November","December"]
+// return IE4+ or W3C DOM reference for an ID
+function getObject(obj) {
+    var theObj
+    if (document.all) {
+        if (typeof obj == "string") {
+            return document.all(obj)
+        } else {
+            return obj.style
+        }
+    }
+    if (document.getElementById) {
+        if (typeof obj == "string") {
+            return document.getElementById(obj)
+        } else {
+            return obj.style
+        }
+    }
+    return null
+}
+
+/************************
+  DRAW CALENDAR CONTENTS
+*************************/
+// clear and re-populate table based on form's selections
+function populateTable(form) {
+    var theMonth = form.chooseMonth.selectedIndex
+    var theYear = parseInt(form.chooseYear.options[form.chooseYear.selectedIndex].text)
+    // initialize date-dependent variables
+    var firstDay = getFirstDay(theYear, theMonth)
+    var howMany = getMonthLen(theYear, theMonth)
+    
+    // fill in month/year in table header
+    getObject("tableHeader").innerHTML = theMonths[theMonth] + 
+    " " + theYear
+    
+    // initialize vars for table creation
+    var dayCounter = 1
+    var TBody = getObject("tableBody")
+    // clear any existing rows
+    while (TBody.rows.length > 0) {
+        TBody.deleteRow(0)
+    }
+    var newR, newC
+    var done=false
+    while (!done) {
+        // create new row at end
+        newR = TBody.insertRow(TBody.rows.length)
+        for (var i = 0; i < 7; i++) {
+            // create new cell at end of row
+            newC = newR.insertCell(newR.cells.length)
+            if (TBody.rows.length == 1 && i < firstDay) {
+                // no content for boxes before first day
+                newC.innerHTML = ""    
+                continue
+            }
+            if (dayCounter == howMany) {
+                // no more rows after this one
+                done = true
+            }
+            // plug in date (or empty for boxes after last day)
+            newC.innerHTML = (dayCounter <= howMany) ? 
+                dayCounter++ : ""
+        }
         
-        <script>
-            
-            
-        </script>
+    }
+}
+
+/*******************
+  INITIALIZATIONS
+********************/
+// create dynamic list of year choices
+function fillYears() {
+    var today = new Date()
+    var thisYear = today.getFullYear()
+    var yearChooser = document.dateChooser.chooseYear
+    for (i = thisYear; i < thisYear + 5; i++) {
+        yearChooser.options[yearChooser.options.length] = new Option(i, i)
+    }
+    setCurrMonth(today)
+}
+// set month choice to current month
+function setCurrMonth(today) {
+    document.dateChooser.chooseMonth.selectedIndex = today.getMonth()
+}
+</SCRIPT>
+</head>
+<body onLoad="fillYears(); populateTable(document.dateChooser)">
+   
+
+     <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="Main.html">Online Personal Diary</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li ><a href="#">Home</a></li>
+        <li class="active">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">MyDiary </a>
+        <!--  <ul class="dropdown-menu">
+            <li><a href="#">MyDiary</a></li>
+           
+          </ul>-->
+        </li>
+        <li><a href="contactUs.html">Contact</a></li>
+        <li><a href="aboutUs.html">AboutUs</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="Main.html"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
         
-    </head>
-    <body>
-        
-        <table border="1">
-            <thead>
-                <th>Date</th>
-                <th>Thoughts</th>
+      </ul>
+    </div>
+  </div>
+</nav>
+    
+    
+    
+<center>  <div style="display: inline-block " ><h2>  &nbsp;&nbsp;&nbsp;Date:&nbsp;&nbsp;</h2></div><div style="display: inline-block"><input type="date" name="date" class="date" id="date" placeholder="date"/></div><br/></center>
+    
+    
+<div class="bs-example">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Row</th>
+                <th>Title</th>
+                <th>Past Thoughts</th>
                 
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Mon Dec 14 2017</td>
-                    <td>I'm looking for new job</td>               
-                </tr>          
-                               
+            </tr>
+        </thead>
+        <tbody>
+        	<tr class="active">
+                <td>1</td>
+                <td>Graduation Ceremony</td>
+                <td>I have to buy some items like suit and tie</td>
+               
+            </tr>
+            <tr class="success">
+                <td>2</td>
+                <td>OPT Starting date</td>
+                <td>My OPT start date will be Jan 1st 2018</td>
                 
-            </tbody>
-            
-            
-        </table>
-        
-        
-        
-    </body>
-</html>
+            </tr>
+            <tr class="info">
+                <td>3</td>
+                <td>Quote of the Day</td>
+                <td>Hard work beats smart work, if smart work doesn't word hard</td>
+                
+            </tr>
+            <tr class="warning">
+                <td>4</td>
+                <td>Final Exam</td>
+                <td>HCI final project Presentation due by April 27</td>
+               
+            </tr>
+            <tr class="danger">
+                <td>5</td>
+                <td>Flight to India</td>
+                <td>I'm going to home after a long time on Jan 2nd 2018</td>
+                
+            </tr>
+        </tbody>
+    </table>
+</div>
+    <style>
+    footer {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+    margin-top: 200px;
+}
+</style>
+    
+<footer style="">Copyright &copy; personalonlinediary.com</footer>
+</body>
+</html>                                		

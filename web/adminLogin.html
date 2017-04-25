@@ -1,7 +1,7 @@
 
 <html>
     <head>
-        
+        <title>Admin-Login</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -263,19 +263,13 @@ function testLocalStorageData() {
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">MyDiary <span class="caret"></span></a>
-        <!--  <ul class="dropdown-menu">
-            <li><a href="#">MyDiary</a></li>
-           
-          </ul>-->
-        </li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">AboutUs</a></li>
+        
+          
+        
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="Registration.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li id="login"><a href="SignIn.html" ><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        
+        <li id="login"><a href="SignIn.html" ><span class="glyphicon glyphicon-log-in"></span>User Login</a></li>
       </ul>
     </div>
   </div>
@@ -286,7 +280,9 @@ function testLocalStorageData() {
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="form-signin" action="UserHomePage.html">
+            <center><p style="color:white">Admin</p></center>
+            
+            <form class="form-signin" action="AdminMain.html">
                 <span id="reauth-email" class="reauth-email"></span>
                 
                 
@@ -313,7 +309,7 @@ function testLocalStorageData() {
     background-color: black;
     clear: left;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 </style>
     

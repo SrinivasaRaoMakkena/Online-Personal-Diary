@@ -13,7 +13,7 @@
 		<!-- Google Fonts -->
 		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
-
+                <script type="text/javascript" src="registration.js"></script>
 		<title>Registration</title>
 	</head>
         <style>
@@ -25,7 +25,7 @@
  * General styles
  */
 #playground-container {
-    height: 400px;
+    height: 300px;
     overflow: hidden !important;
     -webkit-overflow-scrolling: touch;
 }
@@ -190,7 +190,8 @@ span.input-group-addon i {
                                         <div class="cols-sm-10">
                                                 <div class="input-group">
                                                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+                                                        <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name" required="" oninvalid="this.setCustomValidity('Please enter Name Here')"
+    oninput="setCustomValidity('')"/>
                                                 </div>
                                         </div>
                                 </div>
@@ -200,7 +201,8 @@ span.input-group-addon i {
                                         <div class="cols-sm-10">
                                                 <div class="input-group">
                                                         <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+                                                        <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email" required="" oninvalid="this.setCustomValidity('Please enter your Email Here')"
+    oninput="setCustomValidity('')"/>
                                                 </div>
                                         </div>
                                 </div>
@@ -210,7 +212,8 @@ span.input-group-addon i {
                                         <div class="cols-sm-10">
                                                 <div class="input-group">
                                                         <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
+                                                        <input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username" required="" oninvalid="this.setCustomValidity('Please enter User Name Here')"
+    oninput="setCustomValidity('')"/>
                                                 </div>
                                         </div>
                                 </div>
@@ -220,7 +223,8 @@ span.input-group-addon i {
                                         <div class="cols-sm-10">
                                                 <div class="input-group">
                                                         <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                                        <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+                                                        <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password" required="" oninvalid="this.setCustomValidity('Please enter your password Here')"
+    oninput="setCustomValidity('')"/>
                                                 </div>
                                         </div>
                                 </div>
@@ -230,13 +234,14 @@ span.input-group-addon i {
                                         <div class="cols-sm-10">
                                                 <div class="input-group">
                                                         <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                                        <input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+                                                        <input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password" required="" oninvalid="this.setCustomValidity('Please enter password exactly as above!')"
+    oninput="setCustomValidity('')"/>
                                                 </div>
                                         </div>
                                 </div>
 
                                 <div class="form-group ">
-                                        <a href="SignIn.html" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Register</a>
+                                    <input type="submit" id="register" class="btn btn-primary btn-lg btn-block login-button" value="Register"></input>
                                 </div>
 
                         </form>
@@ -248,5 +253,18 @@ span.input-group-addon i {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    
+    
+    <style>
+    footer {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+</style>
+    
+<footer style="">Copyright &copy; personalonlinediary.com</footer>
 	</body>
 </html>
